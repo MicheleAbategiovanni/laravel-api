@@ -15,8 +15,10 @@
             </div>
             @endforeach
 
+
         </div>
     </div>
+    {{ $projects->links() }}
 </section>
 
 @endsection
