@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request) {
+        public function index(Request $request)
+        {
 
-        // Paginater = 10 elements for pages
+                $projects = Project::with("technologies")->paginate(1);
 
-        $projects = Project::with("technologies")->paginate(10);
 
-        return response()->json($projects);
+                return response()->json($projects);
+        }
 
-    }
+        public function show(Project $project)
+        {
 
-    public function show(Project $project) {
+                $project->load("technologies");
 
-        $project->load("technologies");
-
-        return response()->json($project);
-    }
+                return response()->json($project);
+        }
 }
