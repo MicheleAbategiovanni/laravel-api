@@ -12,13 +12,13 @@ class ProjectController extends Controller
 
         $projects = Project::with("technologies")->paginate(1);
 
+
         return response()->json($projects);
 
     }
 
     public function show(Project $project) {
-        // come il with() caricare i dati di queste relazioni,
-        // dopo aver eseguito la query principale
+
         $project->load("technologies");
 
         return response()->json($project);
